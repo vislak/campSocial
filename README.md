@@ -1,5 +1,5 @@
 # campSocial
-YelpCamp is based on the popular Yelp.com , the difference being it focuses on the campgrounds that any host/owner can post for the users across the globe to check and review.
+campSocial is based on the popular Yelp.com , the difference being it focuses on the campgrounds that any host/owner can post for the users across the globe to check and review.
 
 The application is hosted on heroku and can be accessed at the below web address  
 https://campsocial.herokuapp.com/
@@ -51,13 +51,6 @@ Changing background that fades away making space for a new background to show.
 
 ## Add new comment
 ![Alt text](images/addnewcomment.png?raw=true)  
-
-
-## Deployment:
-
-- In the app.js use - > mongoose.connect('mongodb://localhost/yelp_camp'); (if mongodb is running on localhost).  
-- I have used -> mongoose.connect(process.env.DATABASEURL); and have set DATABASEURL as environment variable in my heroku to maintain security.
-
 
 
  
