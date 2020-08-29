@@ -1,117 +1,70 @@
 # YelpCamp
+YelpCamp is a project that was completed as a part of [Colt Steele's Web Development Bootcamp course (Udemy)](https://www.udemy.com/the-web-developer-bootcamp/learn/v4/overview).
 
-[![Known Vulnerabilities](https://snyk.io/test/github/lucasweng/yelp-camp/badge.svg)](https://snyk.io/test/github/lucasweng/yelp-camp)
-[![NSP Status](https://nodesecurity.io/orgs/webdevprojects/projects/e3247e54-2256-44ff-9c8a-e4e087bd49fa/badge)](https://nodesecurity.io/orgs/webdevprojects/projects/e3247e54-2256-44ff-9c8a-e4e087bd49fa)
+## Description
+YelpCamp is based on the popular Yelp.com , the difference being it focuses on the campgrounds that any host/owner can post for the users across the globe to check and review.
 
-> A Node.js web application project from the Udemy course - [The Web Developer Bootcamp by Colt Steele](https://www.udemy.com/the-web-developer-bootcamp/)
+The application is hosted on heroku and can be accessed at the below web address  
+https://yelpcamp-vijay1.herokuapp.com/
 
-## Live Demo
+## Functionalities
+- Everyone can view the camps and reviews without signing up or logging in.
+- The user will have to login to edit the campground details or any comments.
+- The user can only edit/delete the campgrounds and comments that they have added.
+- All the data will pe persistent and is stored in the awazon cloud.
 
-To see the app in action, go to [https://yelpcamp--demo.herokuapp.com/](https://yelpcamp--demo.herokuapp.com/)
+## Technologies Used:
 
-## Features
+- **HTML5**  - markup language for creating web pages and web applications  
+- **CSS3**   - used for describing the presentation of a document written in a markup language  
+- **Bootstrap** - free and open-source front-end web framework for designing websites and web applications quickly  
+- **jQuery** - cross-platform JavaScript library designed to simplify the client-side scripting of HTML  
+- **DOM Manipulation** - is a platform and language-neutral interface that allows programs and scripts to dynamically access and update the content, structure, and style of a document  
+- **Node.js** - pen-source, cross-platform JavaScript run-time environment for executing JavaScript code server-side  
+- **Express.js** - for building web applications and APIs and connecting middleware  
+- **REST** - REST (REpresentational State Transfer) is an architectural style for developing web services  
+- **MongoDB** - open-source cross-platform document-oriented NoSQL database program to store details like users info, campgrounds info and comments  
+- **PassportJS** - authentication middleware for Node.js. Extremely flexible and modular, Passport can be unobtrusively dropped in to any Express-based web application  
+- **Data Associations** - associating user data with the respective campgrounds and comments using reference method  
+- **Heroku** - cloud platform as a service used as a web application deployment model  
+- **AWS** - mongodb is hosted on amazon ec2 instance  
 
-* Authentication:
-  
-  * User login with username and password
 
-  * Admin sign-up with admin code
+## Homepage
+Changing background that fades away making space for a new background to show.
 
-* Authorization:
+![Alt text](images/homepage1.png?raw=true)  
 
-  * One cannot manage posts and view user profile without being authenticated
+![Alt text](images/homepage2.png?raw=true)  
 
-  * One cannot edit or delete posts and comments created by other users
+## Show all Campgrounds
+![Alt text](images/campgrounds.png?raw=true) 
 
-  * Admin can manage all posts and comments
+## Selected Campground
+![Alt text](images/selected_campground.png?raw=true)  
 
-* Manage campground posts with basic functionalities:
+## Sign Up
+![Alt text](images/signup.png?raw=true)  
 
-  * Create, edit and delete posts and comments
+## Log in
+![Alt text](images/login.png?raw=true)  
 
-  * Upload campground photos
+## Add new campground
+![Alt text](images/addnewcampground.png?raw=true)  
 
-  * Display campground location on Google Maps
-  
-  * Search existing campgrounds
+## Add new comment
+![Alt text](images/addnewcomment.png?raw=true)  
 
-* Manage user account with basic functionalities:
 
-  * ~~Password reset via email confirmation~~ (disabled)
+## Deployment:
 
-  * Profile page setup with sign-up
+- In the app.js use - > mongoose.connect('mongodb://localhost/yelp_camp'); (if mongodb is running on localhost).  
+- I have used -> mongoose.connect(process.env.DATABASEURL); and have set DATABASEURL as environment variable in my heroku to maintain security.
 
-* Flash messages responding to users' interaction with the app
 
-* Responsive web design
 
-### Custom Enhancements
-
-* Update campground photos when editing campgrounds
-
-* Update personal information on profile page
-
-* Improve image load time on the landing page using Cloudinary
-
-* Use Helmet to strengthen security
  
-## Getting Started
 
-> This app contains API secrets and passwords that have been hidden deliberately, so the app cannot be run with its features on your local machine. However, feel free to clone this repository if necessary.
 
-### Clone or download this repository
 
-```sh
-git clone https://github.com/lucasweng/yelp-camp.git
-```
 
-### Install dependencies
-
-```sh
-npm install
-```
-
-or
-
-```sh
-yarn install
-```
-
-### Comments in code
-
-Some comments in the source code are course notes and therefore might not seem necessary from a developer's point of view.
-
-## Built with
-
-### Front-end
-
-* [ejs](http://ejs.co/)
-* [Google Maps APIs](https://developers.google.com/maps/)
-* [Bootstrap](https://getbootstrap.com/docs/3.3/)
-
-### Back-end
-
-* [express](https://expressjs.com/)
-* [mongoDB](https://www.mongodb.com/)
-* [mongoose](http://mongoosejs.com/)
-* [async](http://caolan.github.io/async/)
-* [crypto](https://nodejs.org/api/crypto.html#crypto_crypto)
-* [helmet](https://helmetjs.github.io/)
-* [passport](http://www.passportjs.org/)
-* [passport-local](https://github.com/jaredhanson/passport-local#passport-local)
-* [express-session](https://github.com/expressjs/session#express-session)
-* [method-override](https://github.com/expressjs/method-override#method-override)
-* [nodemailer](https://nodemailer.com/about/)
-* [moment](https://momentjs.com/)
-* [cloudinary](https://cloudinary.com/)
-* [geocoder](https://github.com/wyattdanger/geocoder#geocoder)
-* [connect-flash](https://github.com/jaredhanson/connect-flash#connect-flash)
-
-### Platforms
-
-* [Cloudinary](https://cloudinary.com/)
-* [Heroku](https://www.heroku.com/)
-* [Cloud9](https://aws.amazon.com/cloud9/?origin=c9io)
-## License
-
-#### [MIT](./LICENSE)

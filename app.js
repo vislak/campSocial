@@ -1,41 +1,36 @@
-const express        = require("express"),
-      app            = express(),
-      bodyParser     = require("body-parser"),
-      mongoose       = require("mongoose"),
-      helmet         = require("helmet"),
-      flash          = require("connect-flash"),
-      session        = require("express-session"),
-      moment         = require("moment"),
-      passport       = require("passport"),
-      LocalStrategy  = require("passport-local"),
-      methodOverride = require("method-override"),
-      User           = require("./models/user");
+var express = require('express');
+var app = express();
+var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
+var Campground = require('./models/campground');
+var seedDB = require('./seeds');
+var Comment = require('./models/comment');
+var passport = require('passport');
+var LocalStrategy = require('passport-local');
+var User = require('./models/user');
+var methodOverride = require('method-override');
+var flash = require('connect-flash');
 
-// requiring routes     
-const indexRoute      = require("./routes/index"),
-      campgroundRoute = require("./routes/campgrounds"),
-      commentRoute    = require("./routes/comments"),
-      userRoute       = require("./routes/user"),
-      passwordRoute   = require("./routes/password");
+// requiring routes
+var commentRoutes = require('./routes/comments'),
+	campgroundRoutes = require('./routes/campgrounds'),
+	indexRoutes		= require('./routes/index');
 
-// connect to the DB 
-let url = process.env.DATABASEURL || "mongodb://localhost/yelp_camp_v13"; // fallback in case global var not working
-mongoose.connect(url, {useMongoClient: true});
+mongoose.connect(process.env.DATABASEURL);
 
-app.set("view engine", "ejs");
-app.use(helmet());
 app.use(bodyParser.urlencoded({extended: true}));
-app.use(express.static(__dirname + "/public"));
-app.use(methodOverride("_method"));
-app.use(flash());
-app.locals.moment = moment; // create local variable available for the application
 
-//passport configuration
-app.use(session({
-  secret: process.env.SESSIONSECRET,
-  resave: false,
-  saveUninitialized: false
+app.set('view engine','ejs');
+app.use(express.static(__dirname + "/public"));
+app.use(methodOverride('_method'));
+app.use(flash());
+
+app.use(require('express-session')({
+	secret : 'Bootcamp project - YelpCamp',
+	resave: false,
+	saveUninitialized: false
 }));
+
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -43,19 +38,27 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-// pass currentUser to all routes
-app.use((req, res, next) => {
-  res.locals.currentUser = req.user; // req.user is an authenticated user
-  res.locals.error = req.flash("error");
-  res.locals.success = req.flash("success");
-  next();
+
+app.use(function(req, res, next){
+	res.locals.currentUser = req.user;
+	res.locals.error = req.flash("error");
+	res.locals.success = req.flash("success");
+	next();
 });
 
-// use routes
-app.use("/", indexRoute);
-app.use("/campgrounds", campgroundRoute);
-app.use("/campgrounds/:id/comments", commentRoute);
-app.use("/users", userRoute);
-app.use("/", passwordRoute);
+// express routers use & can provide prefix for every single route
+app.use('/',indexRoutes);
+app.use('/campgrounds',campgroundRoutes);
+app.use('/campgrounds/:id/comments',commentRoutes);
 
-app.listen(process.env.PORT, process.env.IP, () => console.log("The YelpCamp Server Has Started!"));
+
+// app.listen('3000', 'localhost', function() {
+// 	console.log('YelpCamp Server is running on localhost 3000 port');
+// });
+
+app.listen( process.env.PORT, process.env.IP, function() {
+	console.log('YelpCamp Server started....');
+});
+
+
+
