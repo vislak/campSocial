@@ -1,4 +1,4 @@
-# YelpCamp
+# campSocial
 YelpCamp is based on the popular Yelp.com , the difference being it focuses on the campgrounds that any host/owner can post for the users across the globe to check and review.
 
 The application is hosted on heroku and can be accessed at the below web address  
